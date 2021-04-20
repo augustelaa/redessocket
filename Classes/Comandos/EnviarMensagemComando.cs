@@ -12,7 +12,8 @@ namespace RedesSockets.Classes.Comandos
         private Mensagem Mensagem;
         private const string ConteudoComando = "SEND MESSAGE {0}:{1}:{2}:{3}";
 
-        public EnviarMensagemComando(Cliente cliente, Usuario usuario, Usuario usuarioDestino, Mensagem mensagem) : base(cliente)
+        public EnviarMensagemComando(Cliente cliente, Usuario usuario, Usuario usuarioDestino, 
+            Mensagem mensagem) : base(cliente)
         {
             this.Usuario = usuario;
             this.UsuarioDestino = usuarioDestino;
@@ -20,7 +21,8 @@ namespace RedesSockets.Classes.Comandos
         }
         public override Mensagem Executar()
         {
-            var conteudo = string.Format(ConteudoComando, this.Usuario.UserId, this.Usuario.UserPass, this.UsuarioDestino.UserId, this.Mensagem);
+            var conteudo = string.Format(ConteudoComando, this.Usuario.UserId, this.Usuario.UserPass, 
+                this.UsuarioDestino.UserId, this.Mensagem);
             if (!this.Cliente.Enviar(new Mensagem(conteudo)))
             {
                 throw new SocketException();

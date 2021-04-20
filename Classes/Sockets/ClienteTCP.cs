@@ -11,7 +11,7 @@ namespace RedesSockets.Classes.Sockets
     {
         private Socket Socket;
         private static ClienteTCP _instance;
-
+        
         public static ClienteTCP getInstance()
         {
             if (_instance == null)

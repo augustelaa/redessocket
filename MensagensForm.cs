@@ -8,28 +8,24 @@ namespace RedesSockets
 {
     public partial class aplicacao : Form
     {
-        private Cliente _clienteTCP;
-        private Cliente _clienteUDP;
-        private UsuarioService UsuarioService;
-        private MensagemService MensagemService;
+        private UsuarioService _usuarioService;
+        private MensagemService _mensagemService;
         private Usuario Usuario;
 
         public aplicacao()
         {
             InitializeComponent();
             this.Usuario = new Usuario("4123", "rsybt");
-            this._clienteTCP = ClienteTCP.getInstance();
-            this._clienteUDP = ClienteUDP.getInstance();
-            this.UsuarioService = new UsuarioService();
-            this.MensagemService = new MensagemService();
+
+            this._usuarioService = UsuarioService.getInstance();
+            this._mensagemService = MensagemService.getInstance();
         }
 
         private void listarUsuariosTimmer_Tick(object sender, EventArgs e)
         {
             try
             {
-                this._clienteTCP.Conectar("larc.inf.furb.br", 1012);
-                this.UsuarioService.listarUsuarios(this._clienteTCP, this.Usuario);
+                this._usuarioService.listarUsuarios(this.Usuario);
             }
             catch (Exception ex)
             {
@@ -46,10 +42,9 @@ namespace RedesSockets
 
             try
             {
-                this._clienteUDP.Conectar("larc.inf.furb.br", 1011);
                 var usuarioDestino = new Usuario("1416");
                 var mensagem = new Mensagem(textoMensagem);
-                this.MensagemService.enviarMensagem(this._clienteUDP, this.Usuario, usuarioDestino, mensagem);
+                this._mensagemService.enviarMensagem(this.Usuario, usuarioDestino, mensagem);
             }
             catch (Exception ex)
             {
@@ -61,8 +56,7 @@ namespace RedesSockets
         {
             try
             {
-                this._clienteTCP.Conectar("larc.inf.furb.br", 1012);
-                var mensagem = this.MensagemService.retornarMensagem(this._clienteTCP, this.Usuario);
+                var mensagem = this._mensagemService.retornarMensagem(this.Usuario);
                 listaMensagensTextBox.AppendText(mensagem.getConteudo());
                 listaMensagensTextBox.AppendText(Environment.NewLine);
             }

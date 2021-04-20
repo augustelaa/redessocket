@@ -9,13 +9,27 @@ namespace RedesSockets.Dominio.Mensagens
 {
     public class MensagemService
     {
-        public Mensagem retornarMensagem(Cliente cliente, Usuario usuario)
+        private static MensagemService _instance;
+
+        public static MensagemService getInstance()
         {
+            if (_instance == null)
+            {
+                _instance = new MensagemService();
+            }
+            return _instance;
+        }
+        public Mensagem retornarMensagem(Usuario usuario)
+        {
+            var cliente = ClienteTCP.getInstance();
+            cliente.Conectar("larc.inf.furb.br", 1012);
             var retornarMensagem = new RetornarMensagemComando(cliente, usuario);
             return retornarMensagem.Executar();
         }
-        public Mensagem enviarMensagem(Cliente cliente, Usuario usuario, Usuario usuarioDestino, Mensagem mensagem)
+        public Mensagem enviarMensagem(Usuario usuario, Usuario usuarioDestino, Mensagem mensagem)
         {
+            var cliente = ClienteUDP.getInstance();
+            cliente.Conectar("larc.inf.furb.br", 1011);
             var enviarMensagem = new EnviarMensagemComando(cliente, usuario, usuarioDestino, mensagem);
             return enviarMensagem.Executar();
         }
