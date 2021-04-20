@@ -8,8 +8,8 @@ namespace RedesSockets
 {
     public partial class aplicacao : Form
     {
-        private Cliente ClienteTCP;
-        private Cliente ClienteUDP;
+        private Cliente _clienteTCP;
+        private Cliente _clienteUDP;
         private UsuarioService UsuarioService;
         private MensagemService MensagemService;
         private Usuario Usuario;
@@ -18,16 +18,23 @@ namespace RedesSockets
         {
             InitializeComponent();
             this.Usuario = new Usuario("4123", "rsybt");
-            this.ClienteTCP = new ClienteTCP();
-            this.ClienteUDP = new ClienteUDP();
+            this._clienteTCP = ClienteTCP.getInstance();
+            this._clienteUDP = ClienteUDP.getInstance();
             this.UsuarioService = new UsuarioService();
             this.MensagemService = new MensagemService();
         }
 
         private void listarUsuariosTimmer_Tick(object sender, EventArgs e)
         {
-            this.ClienteTCP.Conectar("larc.inf.furb.br", 1012);
-            this.UsuarioService.listarUsuarios(this.ClienteTCP, this.Usuario);
+            try
+            {
+                this._clienteTCP.Conectar("larc.inf.furb.br", 1012);
+                this.UsuarioService.listarUsuarios(this._clienteTCP, this.Usuario);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void enviarMensagemButton_Click(object sender, EventArgs e)
@@ -37,17 +44,32 @@ namespace RedesSockets
             listaMensagensTextBox.AppendText(textoMensagem);
             listaMensagensTextBox.AppendText(Environment.NewLine);
 
-            this.ClienteUDP.Conectar("larc.inf.furb.br", 1011);
-            var usuarioDestino = new Usuario("1416");
-            var mensagem = new Mensagem(textoMensagem);
-            this.MensagemService.enviarMensagem(this.ClienteUDP, this.Usuario, usuarioDestino, mensagem);
+            try
+            {
+                this._clienteUDP.Conectar("larc.inf.furb.br", 1011);
+                var usuarioDestino = new Usuario("1416");
+                var mensagem = new Mensagem(textoMensagem);
+                this.MensagemService.enviarMensagem(this._clienteUDP, this.Usuario, usuarioDestino, mensagem);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void receberMensagemButton_Click(object sender, EventArgs e)
         {
-            var mensagem = this.MensagemService.retornarMensagem(this.ClienteTCP, this.Usuario);
-            listaMensagensTextBox.AppendText(mensagem.getConteudo());
-            listaMensagensTextBox.AppendText(Environment.NewLine);
+            try
+            {
+                this._clienteTCP.Conectar("larc.inf.furb.br", 1012);
+                var mensagem = this.MensagemService.retornarMensagem(this._clienteTCP, this.Usuario);
+                listaMensagensTextBox.AppendText(mensagem.getConteudo());
+                listaMensagensTextBox.AppendText(Environment.NewLine);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

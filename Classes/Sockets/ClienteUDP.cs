@@ -26,6 +26,10 @@ namespace RedesSockets.Classes.Sockets
 
         public void Conectar(string hostName, int porta)
         {
+            if (this.Socket.Connected)
+            {
+                return;
+            }
             IPHostEntry ipHostInfo = Dns.GetHostEntry(hostName);
             IPAddress ipAddress = ipHostInfo.AddressList[0];
             this.Socket.Connect(ipAddress, porta);
