@@ -18,6 +18,10 @@ namespace RedesSockets.Comandos
             Usuario = usuario;
             Cliente = cliente;
         }
+        // [EXEMPLO ENTRADA]
+        // GET USERS <userid>:<passwd>
+        // [EXEMPLO SAIDA]
+        // <userid>:<username>:<wins>:
         public Mensagem Executar()
         {
             var conteudo = string.Format(ConteudoComando, Usuario.UserId, Usuario.UserPass);

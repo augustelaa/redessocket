@@ -9,19 +9,25 @@ namespace RedesSockets
     {
         private readonly UsuarioService _usuarioService;
         private readonly MensagemService _mensagemService;
-        private readonly Usuario Usuario;
+        
+        private Usuario Usuario;
 
         public Aplicacao()
         {
             InitializeComponent();
+            DoLogin();
 
+            // singleton
+            _usuarioService = UsuarioService.GetInstance();
+            _mensagemService = MensagemService.GetInstance();
+        }
+
+        private void DoLogin()
+        {
             // Nesse ponto criamos de forma fixa o usuário logado na aplicação
             Usuario = new Usuario("8722", "hieef", "Augusto");
             // Adicionamos ele na lista de usuários logados...
             ListaUsuariosListBox.Items.Add(Usuario);
-
-            _usuarioService = UsuarioService.GetInstance();
-            _mensagemService = MensagemService.GetInstance();
         }
 
         // Esse método é executado a cada "tick" do timmer de 6s

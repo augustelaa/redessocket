@@ -6,7 +6,7 @@ namespace RedesSockets.Mensagens
 {
     public class MensagemService
     {
-        // Singleton
+        // Singleton (http://www.macoratti.net/18/06/c_singstat1.htm)
         private static MensagemService _instance;
 
         public static MensagemService GetInstance()

@@ -6,7 +6,7 @@ namespace RedesSockets.Usuarios
 {
     public class UsuarioService
     {
-        // Singleton
+        // Singleton (http://www.macoratti.net/18/06/c_singstat1.htm)
         private static UsuarioService _instance;
 
         public static UsuarioService GetInstance()

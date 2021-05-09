@@ -23,6 +23,11 @@ namespace RedesSockets.Comandos
             Mensagem = mensagem;
             Cliente = cliente;
         }
+
+        // [EXEMPLO]
+        // SEND MESSAGE <userid1>:<passwd1>:<userid2>:<msg>
+        // [EXEMPLO SAIDA]
+        // NUNCA HÁVERA SAIDA NESSE COMANDO, null !
         public Mensagem Executar()
         {
             var conteudo = string.Format(ConteudoComando, Usuario.UserId, Usuario.UserPass, 
@@ -32,7 +37,7 @@ namespace RedesSockets.Comandos
             {
                 throw new SocketException();
             }
-            return Cliente.Receber();
+            return null;
         }
     }
 }
