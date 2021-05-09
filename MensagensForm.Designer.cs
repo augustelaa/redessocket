@@ -1,7 +1,7 @@
 ﻿
 namespace RedesSockets
 {
-    partial class aplicacao
+    partial class Aplicacao
     {
         /// <summary>
         ///  Required designer variable.
@@ -30,76 +30,76 @@ namespace RedesSockets
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.listaUsuariosListBox = new System.Windows.Forms.ListBox();
+            this.ListaUsuariosListBox = new System.Windows.Forms.ListBox();
             this.listarUsuariosTimmer = new System.Windows.Forms.Timer(this.components);
-            this.enviarMensagemButton = new System.Windows.Forms.Button();
-            this.mensagemTextBox = new System.Windows.Forms.TextBox();
-            this.listaMensagensTextBox = new System.Windows.Forms.TextBox();
-            this.receberMensagemButton = new System.Windows.Forms.Button();
+            this.EnviarMensagemButton = new System.Windows.Forms.Button();
+            this.MensagemTextBox = new System.Windows.Forms.TextBox();
+            this.ListaMensagensTextBox = new System.Windows.Forms.TextBox();
+            this.ReceberMensagemButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listaUsuariosListBox
+            // ListaUsuariosListBox
             // 
-            this.listaUsuariosListBox.FormattingEnabled = true;
-            this.listaUsuariosListBox.ItemHeight = 15;
-            this.listaUsuariosListBox.Location = new System.Drawing.Point(327, 12);
-            this.listaUsuariosListBox.Name = "listaUsuariosListBox";
-            this.listaUsuariosListBox.Size = new System.Drawing.Size(204, 139);
-            this.listaUsuariosListBox.TabIndex = 0;
+            this.ListaUsuariosListBox.FormattingEnabled = true;
+            this.ListaUsuariosListBox.ItemHeight = 15;
+            this.ListaUsuariosListBox.Location = new System.Drawing.Point(327, 12);
+            this.ListaUsuariosListBox.Name = "ListaUsuariosListBox";
+            this.ListaUsuariosListBox.Size = new System.Drawing.Size(204, 139);
+            this.ListaUsuariosListBox.TabIndex = 0;
             // 
             // listarUsuariosTimmer
             // 
             this.listarUsuariosTimmer.Enabled = true;
             this.listarUsuariosTimmer.Interval = 6000;
-            this.listarUsuariosTimmer.Tick += new System.EventHandler(this.listarUsuariosTimmer_Tick);
+            this.listarUsuariosTimmer.Tick += new System.EventHandler(this.ListarUsuariosTimmer_Tick);
             // 
-            // enviarMensagemButton
+            // EnviarMensagemButton
             // 
-            this.enviarMensagemButton.Location = new System.Drawing.Point(327, 157);
-            this.enviarMensagemButton.Name = "enviarMensagemButton";
-            this.enviarMensagemButton.Size = new System.Drawing.Size(75, 23);
-            this.enviarMensagemButton.TabIndex = 1;
-            this.enviarMensagemButton.Text = "Enviar";
-            this.enviarMensagemButton.UseVisualStyleBackColor = true;
-            this.enviarMensagemButton.Click += new System.EventHandler(this.enviarMensagemButton_Click);
+            this.EnviarMensagemButton.Location = new System.Drawing.Point(327, 157);
+            this.EnviarMensagemButton.Name = "EnviarMensagemButton";
+            this.EnviarMensagemButton.Size = new System.Drawing.Size(75, 23);
+            this.EnviarMensagemButton.TabIndex = 1;
+            this.EnviarMensagemButton.Text = "Enviar";
+            this.EnviarMensagemButton.UseVisualStyleBackColor = true;
+            this.EnviarMensagemButton.Click += new System.EventHandler(this.EnviarMensagemButton_Click);
             // 
-            // mensagemTextBox
+            // MensagemTextBox
             // 
-            this.mensagemTextBox.Location = new System.Drawing.Point(12, 157);
-            this.mensagemTextBox.Name = "mensagemTextBox";
-            this.mensagemTextBox.Size = new System.Drawing.Size(309, 23);
-            this.mensagemTextBox.TabIndex = 2;
+            this.MensagemTextBox.Location = new System.Drawing.Point(12, 157);
+            this.MensagemTextBox.Name = "MensagemTextBox";
+            this.MensagemTextBox.Size = new System.Drawing.Size(309, 23);
+            this.MensagemTextBox.TabIndex = 2;
             // 
-            // listaMensagensTextBox
+            // ListaMensagensTextBox
             // 
-            this.listaMensagensTextBox.Location = new System.Drawing.Point(12, 12);
-            this.listaMensagensTextBox.Multiline = true;
-            this.listaMensagensTextBox.Name = "listaMensagensTextBox";
-            this.listaMensagensTextBox.ReadOnly = true;
-            this.listaMensagensTextBox.Size = new System.Drawing.Size(309, 139);
-            this.listaMensagensTextBox.TabIndex = 3;
+            this.ListaMensagensTextBox.Location = new System.Drawing.Point(12, 12);
+            this.ListaMensagensTextBox.Multiline = true;
+            this.ListaMensagensTextBox.Name = "ListaMensagensTextBox";
+            this.ListaMensagensTextBox.ReadOnly = true;
+            this.ListaMensagensTextBox.Size = new System.Drawing.Size(309, 139);
+            this.ListaMensagensTextBox.TabIndex = 3;
             // 
-            // receberMensagemButton
+            // ReceberMensagemButton
             // 
-            this.receberMensagemButton.Location = new System.Drawing.Point(408, 157);
-            this.receberMensagemButton.Name = "receberMensagemButton";
-            this.receberMensagemButton.Size = new System.Drawing.Size(75, 23);
-            this.receberMensagemButton.TabIndex = 4;
-            this.receberMensagemButton.Text = "Receber";
-            this.receberMensagemButton.UseVisualStyleBackColor = true;
-            this.receberMensagemButton.Click += new System.EventHandler(this.receberMensagemButton_Click);
+            this.ReceberMensagemButton.Location = new System.Drawing.Point(408, 157);
+            this.ReceberMensagemButton.Name = "ReceberMensagemButton";
+            this.ReceberMensagemButton.Size = new System.Drawing.Size(75, 23);
+            this.ReceberMensagemButton.TabIndex = 4;
+            this.ReceberMensagemButton.Text = "Receber";
+            this.ReceberMensagemButton.UseVisualStyleBackColor = true;
+            this.ReceberMensagemButton.Click += new System.EventHandler(this.ReceberMensagemButton_Click);
             // 
-            // aplicacao
+            // Aplicacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(545, 198);
-            this.Controls.Add(this.receberMensagemButton);
-            this.Controls.Add(this.listaMensagensTextBox);
-            this.Controls.Add(this.mensagemTextBox);
-            this.Controls.Add(this.enviarMensagemButton);
-            this.Controls.Add(this.listaUsuariosListBox);
-            this.Name = "aplicacao";
+            this.Controls.Add(this.ReceberMensagemButton);
+            this.Controls.Add(this.ListaMensagensTextBox);
+            this.Controls.Add(this.MensagemTextBox);
+            this.Controls.Add(this.EnviarMensagemButton);
+            this.Controls.Add(this.ListaUsuariosListBox);
+            this.Name = "Aplicacao";
             this.Text = "LARC - 5º Laboratório";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -108,12 +108,12 @@ namespace RedesSockets
 
         #endregion
 
-        private System.Windows.Forms.ListBox listaUsuariosListBox;
+        private System.Windows.Forms.ListBox ListaUsuariosListBox;
         private System.Windows.Forms.Timer listarUsuariosTimmer;
-        private System.Windows.Forms.Button enviarMensagemButton;
-        private System.Windows.Forms.TextBox mensagemTextBox;
-        private System.Windows.Forms.TextBox listaMensagensTextBox;
-        private System.Windows.Forms.Button receberMensagemButton;
+        private System.Windows.Forms.Button EnviarMensagemButton;
+        private System.Windows.Forms.TextBox MensagemTextBox;
+        private System.Windows.Forms.TextBox ListaMensagensTextBox;
+        private System.Windows.Forms.Button ReceberMensagemButton;
     }
 }
 

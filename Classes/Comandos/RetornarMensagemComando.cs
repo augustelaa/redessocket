@@ -5,23 +5,27 @@ using System.Net.Sockets;
 
 namespace RedesSockets.Classes.Comandos
 {
-    public class RetornarMensagemComando : Comando
+    public class RetornarMensagemComando : IComando
     {
-        private Usuario Usuario;
+        private readonly Usuario Usuario;
+        private readonly ICliente Cliente;
+
         private const string ConteudoComando = "GET MESSAGE {0}:{1}";
 
-        public RetornarMensagemComando(Cliente cliente, Usuario usuario): base (cliente)
+        public RetornarMensagemComando(ICliente cliente, Usuario usuario)
         {
-            this.Usuario = usuario;
+            Usuario = usuario;
+            Cliente = cliente;
         }
-        public override Mensagem Executar()
+        public Mensagem Executar()
         {
-            var conteudo = string.Format(ConteudoComando, this.Usuario.UserId, this.Usuario.UserPass);
-            if (!this.Cliente.Enviar(new Mensagem(conteudo)))
+            var conteudo = string.Format(ConteudoComando, Usuario.UserId, Usuario.UserPass);
+
+            if (!Cliente.Enviar(new Mensagem(conteudo)))
             {
                 throw new SocketException();
             }
-            return this.Cliente.Receber();
+            return Cliente.Receber();
         }
     }
 }

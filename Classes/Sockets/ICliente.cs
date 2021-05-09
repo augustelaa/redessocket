@@ -1,10 +1,8 @@
 ﻿using RedesSockets.Dominio.Mensagens;
-using System.Net;
-using System.Net.Sockets;
 
 namespace RedesSockets.Classes.Sockets
 {
-    public interface Cliente
+    public interface ICliente
     {
         bool Enviar(Mensagem mensagem);
         Mensagem Receber();

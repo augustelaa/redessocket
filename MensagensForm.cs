@@ -6,26 +6,34 @@ using System.Windows.Forms;
 
 namespace RedesSockets
 {
-    public partial class aplicacao : Form
+    public partial class Aplicacao : Form
     {
-        private UsuarioService _usuarioService;
-        private MensagemService _mensagemService;
-        private Usuario Usuario;
+        private readonly UsuarioService _usuarioService;
+        private readonly MensagemService _mensagemService;
+        private readonly Usuario Usuario;
 
-        public aplicacao()
+        public Aplicacao()
         {
             InitializeComponent();
-            this.Usuario = new Usuario("4123", "rsybt");
+            Usuario = new Usuario("8722", "hieef", "Augusto");
+            ListaUsuariosListBox.Items.Add(Usuario);
 
-            this._usuarioService = UsuarioService.getInstance();
-            this._mensagemService = MensagemService.getInstance();
+            _usuarioService = UsuarioService.GetInstance();
+            _mensagemService = MensagemService.GetInstance();
         }
 
-        private void listarUsuariosTimmer_Tick(object sender, EventArgs e)
+        private void ListarUsuariosTimmer_Tick(object sender, EventArgs e)
         {
             try
             {
-                this._usuarioService.listarUsuarios(this.Usuario);
+                ListaUsuariosListBox.Items.Clear();
+                ListaUsuariosListBox.Items.Add(Usuario);
+
+                _usuarioService.ListarUsuarios(Usuario).ForEach(u =>
+                {
+                    if (u.UserId == Usuario.UserId) return;
+                    ListaUsuariosListBox.Items.Add(u);
+                });
             }
             catch (Exception ex)
             {
@@ -33,18 +41,25 @@ namespace RedesSockets
             }
         }
 
-        private void enviarMensagemButton_Click(object sender, EventArgs e)
+        private void EnviarMensagemButton_Click(object sender, EventArgs e)
         {
-            var textoMensagem = mensagemTextBox.Text;
-            mensagemTextBox.Clear();
-            listaMensagensTextBox.AppendText(textoMensagem);
-            listaMensagensTextBox.AppendText(Environment.NewLine);
+            var textoMensagem = MensagemTextBox.Text;
 
             try
             {
-                var usuarioDestino = new Usuario("1416");
+                if (ListaUsuariosListBox.SelectedItem == null)
+                {
+                    MessageBox.Show("Selecione um usuário!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                Usuario usuarioDestino = (Usuario)ListaUsuariosListBox.SelectedItem;
                 var mensagem = new Mensagem(textoMensagem);
-                this._mensagemService.enviarMensagem(this.Usuario, usuarioDestino, mensagem);
+                if (_mensagemService.EnviarMensagem(Usuario, usuarioDestino, mensagem))
+                {
+                    MensagemTextBox.Clear();
+                    ListaMensagensTextBox.AppendText(String.Format(">>>{0}:{1}", usuarioDestino.UserId, textoMensagem));
+                    ListaMensagensTextBox.AppendText(Environment.NewLine);
+                }
             }
             catch (Exception ex)
             {
@@ -52,13 +67,12 @@ namespace RedesSockets
             }
         }
 
-        private void receberMensagemButton_Click(object sender, EventArgs e)
+        private void ReceberMensagemButton_Click(object sender, EventArgs e)
         {
             try
             {
-                var mensagem = this._mensagemService.retornarMensagem(this.Usuario);
-                listaMensagensTextBox.AppendText(mensagem.getConteudo());
-                listaMensagensTextBox.AppendText(Environment.NewLine);
+                var mensagem = _mensagemService.RetornarMensagem(Usuario);
+                ListaMensagensTextBox.AppendText(String.Format("<<<{0}", mensagem.GetConteudo()));
             }
             catch (Exception ex)
             {

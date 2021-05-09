@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace RedesSockets.Dominio.Mensagens
 {
     public class Mensagem
     {
-        private string Conteudo;
-        
+        private readonly string Conteudo;
         public Mensagem(string conteudo)
         {
             if (conteudo.Length == 0)
@@ -15,15 +13,15 @@ namespace RedesSockets.Dominio.Mensagens
                 throw new ArgumentNullException("Conteudo inválido.");
             }
 
-            this.Conteudo = conteudo;
+            Conteudo = conteudo;
         }
-        public byte[] getBytesConteudo()
+        public byte[] GetBytesConteudo()
         {
-            return Encoding.ASCII.GetBytes(this.Conteudo);
+            return Encoding.ASCII.GetBytes(Conteudo);
         }
-        public string getConteudo()
+        public string GetConteudo()
         {
-            return this.Conteudo;
+            return Conteudo;
         }
     }
 }

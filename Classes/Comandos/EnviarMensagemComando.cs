@@ -5,29 +5,33 @@ using System.Net.Sockets;
 
 namespace RedesSockets.Classes.Comandos
 {
-    public class EnviarMensagemComando : Comando
+    public class EnviarMensagemComando : IComando
     {
-        private Usuario Usuario; 
-        private Usuario UsuarioDestino;
-        private Mensagem Mensagem;
+        private readonly Usuario Usuario; 
+        private readonly Usuario UsuarioDestino;
+        private readonly Mensagem Mensagem;
+        private readonly ICliente Cliente;
+
         private const string ConteudoComando = "SEND MESSAGE {0}:{1}:{2}:{3}";
 
-        public EnviarMensagemComando(Cliente cliente, Usuario usuario, Usuario usuarioDestino, 
-            Mensagem mensagem) : base(cliente)
+        public EnviarMensagemComando(ICliente cliente, Usuario usuario, Usuario usuarioDestino, 
+            Mensagem mensagem)
         {
-            this.Usuario = usuario;
-            this.UsuarioDestino = usuarioDestino;
-            this.Mensagem = mensagem;
+            Usuario = usuario;
+            UsuarioDestino = usuarioDestino;
+            Mensagem = mensagem;
+            Cliente = cliente;
         }
-        public override Mensagem Executar()
+        public Mensagem Executar()
         {
-            var conteudo = string.Format(ConteudoComando, this.Usuario.UserId, this.Usuario.UserPass, 
-                this.UsuarioDestino.UserId, this.Mensagem);
-            if (!this.Cliente.Enviar(new Mensagem(conteudo)))
+            var conteudo = string.Format(ConteudoComando, Usuario.UserId, Usuario.UserPass, 
+                UsuarioDestino.UserId, Mensagem.GetConteudo());
+            
+            if (!Cliente.Enviar(new Mensagem(conteudo)))
             {
                 throw new SocketException();
             }
-            return this.Cliente.Receber();
+            return Cliente.Receber();
         }
     }
 }

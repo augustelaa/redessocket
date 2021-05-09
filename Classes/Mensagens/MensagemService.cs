@@ -1,9 +1,6 @@
 ﻿using RedesSockets.Classes.Comandos;
 using RedesSockets.Classes.Sockets;
 using RedesSockets.Dominio.Usuarios;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RedesSockets.Dominio.Mensagens
 {
@@ -11,7 +8,7 @@ namespace RedesSockets.Dominio.Mensagens
     {
         private static MensagemService _instance;
 
-        public static MensagemService getInstance()
+        public static MensagemService GetInstance()
         {
             if (_instance == null)
             {
@@ -19,19 +16,37 @@ namespace RedesSockets.Dominio.Mensagens
             }
             return _instance;
         }
-        public Mensagem retornarMensagem(Usuario usuario)
+        public Mensagem RetornarMensagem(Usuario usuario)
         {
-            var cliente = ClienteTCP.getInstance();
-            cliente.Conectar("larc.inf.furb.br", 1012);
-            var retornarMensagem = new RetornarMensagemComando(cliente, usuario);
-            return retornarMensagem.Executar();
+            var cliente = new ClienteTCP();
+            try
+            {
+                cliente.Conectar("larc.inf.furb.br", 1012);
+                var retorno = new RetornarMensagemComando(cliente, usuario).Executar();
+                if (retorno.GetConteudo().Trim().Equals(":"))
+                {
+                    return new Mensagem("Sem mensagens\r\n");
+                }
+                return retorno;
+            }
+            finally
+            {
+                cliente.Desconectar();
+            }
         }
-        public Mensagem enviarMensagem(Usuario usuario, Usuario usuarioDestino, Mensagem mensagem)
+        public bool EnviarMensagem(Usuario usuario, Usuario usuarioDestino, Mensagem mensagem)
         {
-            var cliente = ClienteUDP.getInstance();
-            cliente.Conectar("larc.inf.furb.br", 1011);
-            var enviarMensagem = new EnviarMensagemComando(cliente, usuario, usuarioDestino, mensagem);
-            return enviarMensagem.Executar();
+            var cliente = new ClienteUDP();
+            try
+            {
+                cliente.Conectar("larc.inf.furb.br", 1011);
+                new EnviarMensagemComando(cliente, usuario, usuarioDestino, mensagem).Executar();
+                return true;
+            }
+            finally
+            {
+                cliente.Desconectar();
+            }
         }
     }
 }
