@@ -1,8 +1,8 @@
-﻿using RedesSockets.Classes.Comandos;
-using RedesSockets.Classes.Sockets;
+﻿using RedesSockets.Comandos;
+using RedesSockets.Sockets;
 using System.Collections.Generic;
 
-namespace RedesSockets.Dominio.Usuarios
+namespace RedesSockets.Usuarios
 {
     public class UsuarioService
     {

@@ -1,6 +1,5 @@
-﻿using RedesSockets.Classes.Sockets;
-using RedesSockets.Dominio.Mensagens;
-using RedesSockets.Dominio.Usuarios;
+﻿using RedesSockets.Mensagens;
+using RedesSockets.Usuarios;
 using System;
 using System.Windows.Forms;
 

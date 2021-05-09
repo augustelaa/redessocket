@@ -1,8 +1,8 @@
-﻿using RedesSockets.Dominio.Mensagens;
+﻿using RedesSockets.Mensagens;
 using System.Net;
 using System.Net.Sockets;
 
-namespace RedesSockets.Classes.Sockets
+namespace RedesSockets.Sockets
 {
     public class ClienteUDP : ICliente
     {

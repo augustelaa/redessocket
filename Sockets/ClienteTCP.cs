@@ -1,9 +1,9 @@
-﻿using RedesSockets.Dominio.Mensagens;
+﻿using RedesSockets.Mensagens;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace RedesSockets.Classes.Sockets
+namespace RedesSockets.Sockets
 {
     public class ClienteTCP : ICliente
     {

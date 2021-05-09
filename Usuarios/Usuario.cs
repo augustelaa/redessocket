@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RedesSockets.Dominio.Usuarios
+namespace RedesSockets.Usuarios
 {
     public class Usuario
     {

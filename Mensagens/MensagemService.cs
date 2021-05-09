@@ -1,8 +1,8 @@
-﻿using RedesSockets.Classes.Comandos;
-using RedesSockets.Classes.Sockets;
-using RedesSockets.Dominio.Usuarios;
+﻿using RedesSockets.Comandos;
+using RedesSockets.Sockets;
+using RedesSockets.Usuarios;
 
-namespace RedesSockets.Dominio.Mensagens
+namespace RedesSockets.Mensagens
 {
     public class MensagemService
     {

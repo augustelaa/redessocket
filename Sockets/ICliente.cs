@@ -1,6 +1,6 @@
-﻿using RedesSockets.Dominio.Mensagens;
+﻿using RedesSockets.Mensagens;
 
-namespace RedesSockets.Classes.Sockets
+namespace RedesSockets.Sockets
 {
     /*
      * A ideia é criar um Strategy (http://www.macoratti.net/19/01/c_strateg1.htm) para o cliente de conexão

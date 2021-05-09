@@ -1,9 +1,9 @@
-﻿using RedesSockets.Classes.Sockets;
-using RedesSockets.Dominio.Mensagens;
-using RedesSockets.Dominio.Usuarios;
+﻿using RedesSockets.Sockets;
+using RedesSockets.Mensagens;
+using RedesSockets.Usuarios;
 using System.Net.Sockets;
 
-namespace RedesSockets.Classes.Comandos
+namespace RedesSockets.Comandos
 {
     public class EnviarMensagemComando : IComando
     {

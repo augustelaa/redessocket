@@ -1,6 +1,6 @@
-﻿using RedesSockets.Dominio.Mensagens;
+﻿using RedesSockets.Mensagens;
 
-namespace RedesSockets.Classes.Comandos
+namespace RedesSockets.Comandos
 {
     /*
      * A ideia é utilizar o Command Pattern (http://www.macoratti.net/13/03/net_cmd.htm)
