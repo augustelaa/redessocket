@@ -25,7 +25,7 @@ namespace RedesSockets
         private void DoLogin()
         {
             // Nesse ponto criamos de forma fixa o usuário logado na aplicação
-            Usuario = new Usuario("8722", "hieef", "Augusto");
+            Usuario = new Usuario("USERID", "USERPASS", "USERNAME");
             // Adicionamos ele na lista de usuários logados...
             ListaUsuariosListBox.Items.Add(Usuario);
         }
@@ -52,6 +52,7 @@ namespace RedesSockets
             }
         }
 
+        // Esse método é executado quando o botão de enviar mensagem é clicado
         private void EnviarMensagemButton_Click(object sender, EventArgs e)
         {
             var textoMensagem = MensagemTextBox.Text;
@@ -64,6 +65,7 @@ namespace RedesSockets
                     return;
                 }
                 // Upcast de object para Usuario (visto que carregamos o ListBox com List<Usuario>)
+                // http://www.macoratti.net/20/04/c_updown1.htm
                 Usuario usuarioDestino = (Usuario)ListaUsuariosListBox.SelectedItem;
                 var mensagem = new Mensagem(textoMensagem);
                 if (_mensagemService.EnviarMensagem(Usuario, usuarioDestino, mensagem))
@@ -79,6 +81,7 @@ namespace RedesSockets
             }
         }
 
+        // Esse método é executado quando o botão de receber mensagem é clicado
         private void ReceberMensagemButton_Click(object sender, EventArgs e)
         {
             try
