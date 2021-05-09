@@ -1,7 +1,7 @@
 ﻿
 namespace RedesSockets
 {
-    partial class Aplicacao
+    partial class MensagensForm
     {
         /// <summary>
         ///  Required designer variable.

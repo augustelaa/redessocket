@@ -5,14 +5,14 @@ using System.Windows.Forms;
 
 namespace RedesSockets
 {
-    public partial class Aplicacao : Form
+    public partial class MensagensForm : Form
     {
         private readonly UsuarioService _usuarioService;
         private readonly MensagemService _mensagemService;
         
         private Usuario Usuario;
 
-        public Aplicacao()
+        public MensagensForm()
         {
             InitializeComponent();
             DoLogin();
