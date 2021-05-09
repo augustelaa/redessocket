@@ -6,6 +6,7 @@ namespace RedesSockets.Dominio.Usuarios
 {
     public class UsuarioService
     {
+        // Singleton
         private static UsuarioService _instance;
 
         public static UsuarioService GetInstance()
@@ -29,7 +30,12 @@ namespace RedesSockets.Dominio.Usuarios
 
                 if (listaString.Length >= 3)
                 {
-
+                    /**
+                     * 
+                     * A ideia deste trecho é processar os retornos, cada retorno é composto
+                     * por tres pedaços, que são: "id:nome:vitorias:"
+                     * Exemplo: 2756:João da Silva:4:1235:José da Silva:0:1243:Manuel da Silva:2:
+                     */
                     var c = 0;
                     var id = "";
                     var name = "";
@@ -46,10 +52,10 @@ namespace RedesSockets.Dominio.Usuarios
                                 name = item;
                                 break;
                             case 3:
-                                c = 0;
-                                u = new Usuario(id);
+                                c = 0; // neste ponto recomeçamos
+                                u = new Usuario(id); // montamos o obj
                                 u.UserName = name;
-                                usuarios.Add(u);
+                                usuarios.Add(u); // adicionamos na lista
                                 break;
                         }
                     }

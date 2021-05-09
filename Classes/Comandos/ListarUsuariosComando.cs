@@ -8,6 +8,7 @@ namespace RedesSockets.Classes.Comandos
     public class ListarUsuariosComando : IComando
     {
         private readonly Usuario Usuario;
+        // nesse ponto foi utilizado a interface, ou seja, esse comando pode ser executado por qualquer cliente
         private readonly ICliente Cliente;
 
         private const string ConteudoComando = "GET USERS {0}:{1}";

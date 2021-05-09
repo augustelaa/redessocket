@@ -35,6 +35,11 @@ namespace RedesSockets.Dominio.Usuarios
             }
             UserId = userId;
         }
+        /**
+         * O componente ListBox aceita objects, para que o object fique com uma descrição
+         * mais humana, iremos implementar um ToString sobscrevendo o ToString de object
+         * TIP: TODA CLASSE (INCLUSIVE A USUARIO) HERDA DE OBJECT IMPLICITAMENTE
+         */
         public override string ToString()
         {
             return String.Format("{0}:{1}", UserId, UserName);

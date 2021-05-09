@@ -6,6 +6,7 @@ namespace RedesSockets.Dominio.Mensagens
 {
     public class MensagemService
     {
+        // Singleton
         private static MensagemService _instance;
 
         public static MensagemService GetInstance()
@@ -23,7 +24,7 @@ namespace RedesSockets.Dominio.Mensagens
             {
                 cliente.Conectar("larc.inf.furb.br", 1012);
                 var retorno = new RetornarMensagemComando(cliente, usuario).Executar();
-                if (retorno.GetConteudo().Trim().Equals(":"))
+                if (retorno.GetConteudo().Trim().Equals(":")) // quando vier apenas ":" significa que não há msg
                 {
                     return new Mensagem("Sem mensagens\r\n");
                 }

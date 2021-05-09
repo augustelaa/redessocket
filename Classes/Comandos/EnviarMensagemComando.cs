@@ -10,6 +10,7 @@ namespace RedesSockets.Classes.Comandos
         private readonly Usuario Usuario; 
         private readonly Usuario UsuarioDestino;
         private readonly Mensagem Mensagem;
+        // nesse ponto foi utilizado a interface, ou seja, esse comando pode ser executado por qualquer cliente
         private readonly ICliente Cliente;
 
         private const string ConteudoComando = "SEND MESSAGE {0}:{1}:{2}:{3}";
